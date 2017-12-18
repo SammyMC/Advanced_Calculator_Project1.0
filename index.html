@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Advanced Calculator 1.0</title>
+
+		<!-- Setting styles for background, keypad buttons, and display box -->
+
+		<style type="text/css">
+
+		body{
+			background-image:url(blue_sea.jpg);
+			background-size: 100%;
+			background-repeat: no-repeat;
+			background-color: transparent;
+		}
+		
+		.keys{
+			width: 45px;
+			height: 40px;
+		}
+
+		.enter{
+			width: 94px;
+			height: 40px;
+		}
+
+		.display{
+			width: 384px;
+			height: 30px;
+		}
+
+		</style>
+
+	</head>
+	<body>
+		<body>
+
+		<!-- Display -->
+		<input class="display" type="text" id="displayBox">
+
+ 		<!-- Keypad -->
+		 	<p>
+		 		<input class="keys" type="button" value="sin" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="asin" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="sinh" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="asinh" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="cos" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="acos" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="cosh" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="acosh" onclick="solveIt(this)">
+		 	</p>
+		 	<p>
+		 		<input class="keys" type="button" value="tan" onclick="solveIt(this)">
+				<input class="keys" type="button" value="atan" onclick="solveIt(this)">
+				<input class="keys" type="button" value="tanh" onclick="solveIt(this)">
+				<input class="keys" type="button" value="atanh" onclick="solveIt(this)">
+				<input class="keys" type="button" value="log10" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="ln" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="|x|" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="√" onclick="solveIt(this)">
+		 	</p>
+		 	<p>	
+		 		<input class="keys" type="button" value="*" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="/" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="+" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="-" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="." onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="(" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value=")" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="e^x" onclick="solveIt(this)">
+		 	</p>
+		 	<p>
+		 		<input class="keys" type="button" value="5" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="6" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="7" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="8" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="9" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="π" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="AC" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="←" onclick="solveIt(this)">
+		 	</p>	
+		 	<p>
+		 		<input class="keys" type="button" value="0" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="1" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="2" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="3" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="4" onclick="solveIt(this)">
+		 		<input class="keys" type="button" value="%" onclick="solveIt(this)">
+		 		<input class="enter" type="button" name="" id="enter" value="Enter" onclick="solveIt(this)">
+		 	</p>
+
+		<script type="text/javascript">
+
+			//Variables for the array and actions performed on it
+			var t = 0;
+			var x = [];
+			var y
+			var z
+			
+			//Adding keyclicks to the array
+			function solveIt(n){
+				
+				a = n.value;
+				
+				if(a == 'sin' || a == 'asin' || a == 'sinh' || a == 'asinh' || a == 'cos' || a == 'acos' || a == 'cosh' || a == 'acosh' || a == 'tan' || a == 'atan' || a == 'tanh' || a == 'atanh' || a == 'log10') {
+					document.getElementById('displayBox').value += a;
+					a = 'Math.' + a;
+					x.push(a);
+
+				}else if(a == '←'){
+	 				x.pop();
+					document.getElementById('displayBox').value = x.join;
+
+
+	 			}else if(a == 'AC'){
+	 				x = [];
+	 				document.getElementById('displayBox').value = '';
+
+
+	 			}else if(a != 'Enter'){
+					x.push(a);
+					document.getElementById('displayBox').value += a;
+
+	 				
+	 			}else{
+	 				
+	 				//Concatenating the array's elements, replacing some key values with code JavaScript recognizes, solving, and displaying the result
+	 				y = x.join('');
+	 				z = y.replace('√', 'Math.sqrt').replace('%', '*0.01*').replace('π', '*Math.PI').replace('ln', 'Math.log').replace('e^x', 'Math.exp').replace('|x|', 'Math.abs')
+	 				t = eval(z);
+					document.getElementById('displayBox').value = t;
+
+			}
+		}
+
+		</script>
+
+	</body>
+</html>
